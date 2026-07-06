@@ -3,283 +3,1200 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <title>SeaStudy - Cổng Thông Tin Tuyển Sinh & Giáo Dục Trực Tuyến</title>
-    <meta name="description" content="SeaStudy - Cổng thông tin điện tử tra cứu tuyển sinh, điểm chuẩn Đại học, Cao đẳng, thông tin hướng nghiệp và các chương trình đào tạo chính quy mới nhất.">
-    <meta name="keywords" content="seastudy, cổng thông tin tuyển sinh, tra cứu điểm chuẩn, điểm học bạ, hướng nghiệp đại học">
-    <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://seastudy.vn/">
+    <title>Cổng thông tin điện tử - Trường THPT Thống Linh</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
+        /* ==========================================================================
+           1. CORE VARIABLES & RESET STYLES
+           ========================================================================== */
         :root {
-            --blue-navy: #0B2F64; /* Màu xanh đậm thương hiệu giống NCTU */
-            --orange-accent: #F47920; /* Màu cam điểm nhấn */
-            --text-dark: #1e293b;
-            --text-light: #64748b;
-            --bg-light: #f8fafc;
+            --primary-color: #003366;    /* Xanh dương đậm học thuật */
+            --secondary-color: #F2A900;  /* Vàng cam sang trọng */
+            --text-dark: #2C3E50;       /* Chữ tối chính */
+            --text-light: #64748B;      /* Chữ phụ phụ */
+            --bg-light: #F8FAFC;        /* Nền sáng */
+            --bg-white: #FFFFFF;
+            --transition-smooth: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            --max-width: 1200px;
+            --box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', system-ui, sans-serif; }
-        body { background-color: #f1f5f9; color: var(--text-dark); line-height: 1.6; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-        /* --- 1. TOP BAR & HEADER --- */
-        .top-bar { background-color: var(--blue-navy); color: white; font-size: 13px; padding: 6px 20px; border-bottom: 1px solid rgba(255,255,255,0.1); }
-        .top-container { max-width: 1240px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
-        .top-links a { color: rgba(255,255,255,0.8); text-decoration: none; margin-left: 15px; transition: 0.2s; }
-        .top-links a:hover { color: var(--orange-accent); }
+        html {
+            scroll-behavior: smooth;
+        }
 
-        header { background: white; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
-        .header-container { max-width: 1240px; margin: 0 auto; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-size: 32px; font-weight: 800; color: var(--blue-navy); text-decoration: none; display: flex; align-items: center; gap: 10px; }
-        .logo span { color: var(--orange-accent); }
+        body {
+            font-family: 'Roboto', sans-serif;
+            color: var(--text-dark);
+            background-color: var(--bg-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
 
-        /* --- 2. DROPDOWN NAVIGATION MENU (Chuẩn Portal) --- */
-        .main-nav { background-color: #ffffff; border-top: 1px solid #e2e8f0; border-bottom: 3px solid var(--blue-navy); position: sticky; top: 0; z-index: 1000; }
-        .nav-container { max-width: 1240px; margin: 0 auto; }
-        .menu-links { display: flex; list-style: none; }
-        
-        .menu-item { position: relative; }
-        .menu-item > a { display: block; padding: 15px 20px; color: var(--blue-navy); font-weight: 700; font-size: 15px; text-decoration: none; text-transform: uppercase; transition: 0.2s; }
-        .menu-item:hover > a, .menu-item.active > a { background-color: var(--blue-navy); color: white; }
+        h1, h2, h3, h4, h5, h6, .menu-link {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+        }
 
-        /* Khối xổ xuống khi di chuột vào (Dropdown) */
-        .dropdown-menu { position: absolute; top: 100%; left: 0; background: white; min-width: 240px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); list-style: none; display: none; border-top: 2px solid var(--orange-accent); }
-        .dropdown-menu li a { display: block; padding: 12px 20px; color: var(--text-dark); text-decoration: none; font-size: 14px; font-weight: 600; border-bottom: 1px solid #f1f5f9; transition: 0.2s; }
-        .dropdown-menu li a:hover { background-color: #f8fafc; color: var(--orange-accent); padding-left: 25px; }
-        .menu-item:hover .dropdown-menu { display: block; }
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition-smooth);
+        }
 
-        /* --- 3. BANNER SLIDESHOW (Chạy tự động giống web trường thật) --- */
-        .slider-section { position: relative; width: 100%; height: 420px; overflow: hidden; background-color: #000; }
-        .slide { position: absolute; width: 100%; height: 100%; opacity: 0; transition: opacity 0.8s ease-in-out; display: flex; align-items: center; justify-content: center; background-size: cover; background-position: center; }
-        .slide.active-slide { opacity: 1; }
-        .slide::before { content: ''; position: absolute; top:0; left:0; width:100%; height:100%; background: rgba(11, 47, 100, 0.4); }
-        
-        .slide-content { position: relative; max-width: 800px; text-align: center; color: white; padding: 20px; z-index: 10; }
-        .slide-content h2 { font-size: 36px; font-weight: 800; margin-bottom: 15px; text-shadow: 0 2px 4px rgba(0,0,0,0.5); }
-        .slide-content p { font-size: 18px; text-shadow: 0 1px 3px rgba(0,0,0,0.5); }
+        ul {
+            list-style: none;
+        }
 
-        /* --- 4. PORTAL CONTENT GRID --- */
-        .main-content { max-width: 1240px; margin: 40px auto; padding: 0 20px; display: grid; grid-template-columns: 2.8fr 1.2fr; gap: 30px; }
-        
-        /* Khối hiển thị tin tức lớn */
-        .portal-card { background: white; border-radius: 8px; padding: 25px; border: 1px solid #e2e8f0; box-shadow: 0 1px 3px rgba(0,0,0,0.05); margin-bottom: 30px; }
-        .section-title { font-size: 22px; color: var(--blue-navy); font-weight: 800; text-transform: uppercase; margin-bottom: 20px; border-left: 5px solid var(--orange-accent); padding-left: 12px; }
-        
-        /* Bảng hiển thị thông tin tuyển sinh */
-        .table-responsive { overflow-x: auto; margin-top: 15px; }
-        table { width: 100%; border-collapse: collapse; text-align: left; }
-        th, td { padding: 14px 16px; border-bottom: 1px solid #e2e8f0; font-size: 14px; }
-        th { background-color: #f8fafc; color: var(--blue-navy); font-weight: 700; }
-        tr:hover { background-color: #f8fafc; }
-        
-        .badge-method { background-color: #fff7ed; color: #c2410c; border: 1px solid #ffedd5; padding: 3px 8px; border-radius: 4px; font-size: 12px; font-weight: 600; }
-        .score-highlight { color: #dc2626; font-weight: 700; font-size: 16px; }
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
 
-        /* Tiện ích Sidebar */
-        .sidebar-widget { background: white; border-radius: 8px; padding: 20px; border: 1px solid #e2e8f0; margin-bottom: 25px; }
-        .quick-links-list { list-style: none; }
-        .quick-links-list li { border-bottom: 1px solid #f1f5f9; }
-        .quick-links-list li a { display: block; padding: 12px 0; color: var(--text-dark); text-decoration: none; font-weight: 600; font-size: 14px; transition: 0.2s; }
-        .quick-links-list li a:hover { color: var(--orange-accent); padding-left: 5px; }
-        .quick-links-list li a i { color: var(--blue-navy); margin-right: 8px; }
+        .container {
+            width: 100%;
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 20px;
+        }
 
-        /* --- 5. FOOTER ĐA TẦNG CHUYÊN NGHIỆP --- */
-        footer { background-color: var(--blue-navy); color: rgba(255,255,255,0.7); padding: 50px 20px 20px; margin-top: 60px; font-size: 14px; }
-        .footer-grid { max-width: 1240px; margin: 0 auto; display: grid; grid-template-columns: 1.5fr repeat(3, 1fr); gap: 40px; padding-bottom: 30px; border-bottom: 1px solid rgba(255,255,255,0.1); }
-        .footer-col h4 { color: white; font-size: 16px; font-weight: 700; margin-bottom: 20px; text-transform: uppercase; border-bottom: 2px solid var(--orange-accent); display: inline-block; padding-bottom: 5px; }
-        .footer-col ul { list-style: none; }
-        .footer-col ul li { margin-bottom: 10px; }
-        .footer-col ul li a { color: rgba(255,255,255,0.7); text-decoration: none; transition: 0.2s; }
-        .footer-col ul li a:hover { color: white; padding-left: 4px; }
-        .footer-bottom { max-width: 1240px; margin: 20px auto 0; text-align: center; font-size: 13px; color: rgba(255,255,255,0.5); }
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 40px;
+            position: relative;
+            text-transform: uppercase;
+        }
 
-        @media (max-width: 968px) {
-            .main-content { grid-template-columns: 1fr; }
-            .menu-links { display: none; } /* Trên mobile cần phát triển menu dạng hamburger */
-            .footer-grid { grid-template-columns: 1fr; gap: 30px; }
-            .slider-section { height: 300px; }
-            .slide-content h2 { font-size: 24px; }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--secondary-color);
+            border-radius: 2px;
+        }
+
+        /* ==========================================================================
+           2. TOP BAR
+           ========================================================================== */
+        .top-bar {
+            background-color: var(--primary-color);
+            color: var(--bg-white);
+            font-size: 0.85rem;
+            padding: 8px 0;
+            border-bottom: 2px solid var(--secondary-color);
+        }
+
+        .top-bar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .top-info, .top-actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .top-info span i {
+            color: var(--secondary-color);
+            margin-right: 6px;
+        }
+
+        .social-links a {
+            margin-right: 12px;
+            font-size: 1rem;
+        }
+
+        .social-links a:hover {
+            color: var(--secondary-color);
+        }
+
+        .search-box {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .search-box input {
+            padding: 4px 30px 4px 12px;
+            border-radius: 20px;
+            border: 1px solid #ddd;
+            outline: none;
+            font-size: 0.8rem;
+            width: 160px;
+            transition: var(--transition-smooth);
+        }
+
+        .search-box input:focus {
+            width: 220px;
+        }
+
+        .search-box i {
+            position: absolute;
+            right: 10px;
+            color: var(--primary-color);
+            cursor: pointer;
+        }
+
+        .lang-switch {
+            font-weight: bold;
+            cursor: pointer;
+            padding: 2px 6px;
+            border: 1px solid var(--bg-white);
+            border-radius: 4px;
+        }
+
+        /* ==========================================================================
+           3. HEADER & NAVIGATION (STICKY & DROPDOWN)
+           ========================================================================== */
+        .main-header {
+            background-color: var(--bg-white);
+            box-shadow: var(--box-shadow);
+            position: relative;
+            z-index: 999;
+            transition: var(--transition-smooth);
+        }
+
+        /* Lớp Sticky kích hoạt bằng JS */
+        .main-header.sticky {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            animation: slideDown 0.4s ease;
+        }
+
+        @keyframes slideDown {
+            from { transform: translateY(-100%); }
+            to { transform: translateY(0); }
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            max-width: var(--max-width);
+            margin: 0 auto;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-placeholder {
+            width: 55px;
+            height: 55px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.5rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .school-name h1 {
+            font-size: 1.25rem;
+            color: var(--primary-color);
+            letter-spacing: 0.5px;
+            line-height: 1.2;
+        }
+
+        .school-name span {
+            font-size: 0.8rem;
+            color: var(--text-light);
+            display: block;
+            font-weight: 500;
+        }
+
+        /* Menu Navigation */
+        .nav-menu > ul {
+            display: flex;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-link {
+            display: block;
+            padding: 20px 15px;
+            color: var(--text-dark);
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+        }
+
+        .nav-item:hover > .nav-link {
+            color: var(--primary-color);
+        }
+
+        /* Line hiệu ứng hover dưới menu */
+        .nav-link::after {
+            content: '';
+            display: block;
+            width: 0;
+            height: 3px;
+            background-color: var(--secondary-color);
+            transition: var(--transition-smooth);
+            margin-top: 4px;
+        }
+
+        .nav-item:hover > .nav-link::after {
+            width: 100%;
+        }
+
+        /* Dropdown Menu Cấp 1 */
+        .dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: var(--bg-white);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            min-width: 240px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(15px);
+            transition: var(--transition-smooth);
+            border-top: 3px solid var(--primary-color);
+        }
+
+        .dropdown li a {
+            display: block;
+            padding: 12px 20px;
+            font-size: 0.9rem;
+            color: var(--text-dark);
+            border-bottom: 1px solid #F1F5F9;
+            font-weight: 500;
+        }
+
+        .dropdown li a:hover {
+            background-color: #F8FAFC;
+            color: var(--primary-color);
+            padding-left: 25px;
+        }
+
+        .nav-item:hover .dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        /* Mobile Menu Toggle */
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            cursor: pointer;
+        }
+
+        /* ==========================================================================
+           4. HERO SLIDER
+           ========================================================================== */
+        .hero-slider {
+            position: relative;
+            width: 100%;
+            height: 550px;
+            overflow: hidden;
+            background-color: #000;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+            display: flex;
+            align-items: center;
+        }
+
+        .slide.active {
+            opacity: 1;
+        }
+
+        .slide-img-placeholder {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            z-index: 1;
+        }
+
+        .slider-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to right, rgba(0, 51, 102, 0.85), rgba(0, 0, 0, 0.3));
+            z-index: 2;
+        }
+
+        .slide-content {
+            position: relative;
+            z-index: 3;
+            color: var(--bg-white);
+            max-width: 700px;
+            padding: 0 20px;
+            transform: translateY(30px);
+            transition: transform 0.8s ease;
+        }
+
+        .slide.active .slide-content {
+            transform: translateY(0);
+        }
+
+        .slide-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: var(--secondary-color);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .slide-content p {
+            font-size: 1.1rem;
+            margin-bottom: 25px;
+            opacity: 0.9;
+        }
+
+        .btn-more {
+            display: inline-block;
+            padding: 12px 28px;
+            background-color: var(--secondary-color);
+            color: var(--primary-color);
+            font-weight: bold;
+            border-radius: 4px;
+            text-transform: uppercase;
+            box-shadow: 0 4px 10px rgba(242, 169, 0, 0.4);
+        }
+
+        .btn-more:hover {
+            background-color: var(--bg-white);
+            color: var(--primary-color);
+            transform: translateY(-2px);
+        }
+
+        /* Nút điều hướng Slider */
+        .slider-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 15px 20px;
+            border: none;
+            cursor: pointer;
+            z-index: 10;
+            font-size: 1.2rem;
+            border-radius: 4px;
+            transition: var(--transition-smooth);
+        }
+
+        .slider-btn:hover {
+            background-color: var(--secondary-color);
+            color: var(--primary-color);
+        }
+
+        .slider-btn.prev { left: 20px; }
+        .slider-btn.next { right: 20px; }
+
+        /* ==========================================================================
+           5. NEWS & EVENTS SECTION (CSS GRID)
+           ========================================================================== */
+        .news-events {
+            padding: 8px 0 60px 0;
+            margin-top: 60px;
+        }
+
+        .news-grid-layout {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 40px;
+        }
+
+        /* Khối Tin Tức */
+        .news-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background-color: var(--bg-white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition-smooth);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .card-img-holder {
+            height: 200px;
+            background-color: #ddd;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .card-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 4px 10px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            border-radius: 4px;
+        }
+
+        .card-body {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .card-date {
+            font-size: 0.8rem;
+            color: var(--text-light);
+            margin-bottom: 8px;
+        }
+
+        .card-title {
+            font-size: 1.1rem;
+            color: var(--primary-color);
+            margin-bottom: 12px;
+            line-height: 1.4;
+        }
+
+        .card-text {
+            font-size: 0.9rem;
+            color: var(--text-dark);
+            opacity: 0.85;
+            margin-bottom: 15px;
+        }
+
+        /* Khối Thông Báo & Sự Kiện */
+        .notice-board {
+            background-color: var(--bg-white);
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: var(--box-shadow);
+            border-top: 4px solid var(--secondary-color);
+            height: fit-content;
+        }
+
+        .notice-board h3 {
+            font-size: 1.3rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 2px solid #F1F5F9;
+            padding-bottom: 10px;
+        }
+
+        .notice-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .notice-item {
+            display: flex;
+            gap: 15px;
+            align-items: flex-start;
+            border-bottom: 1px dashed #E2E8F0;
+            padding-bottom: 15px;
+        }
+
+        .notice-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .date-icon {
+            background-color: #F1F5F9;
+            color: var(--primary-color);
+            min-width: 55px;
+            padding: 8px;
+            text-align: center;
+            border-radius: 6px;
+            font-weight: bold;
+            border: 1px solid #E2E8F0;
+        }
+
+        .date-icon span {
+            display: block;
+            font-size: 1.1rem;
+            color: var(--secondary-color);
+        }
+
+        .date-icon small {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+        }
+
+        .notice-content a {
+            font-weight: 500;
+            font-size: 0.95rem;
+            color: var(--text-dark);
+            line-height: 1.3;
+            display: block;
+        }
+
+        .notice-content a:hover {
+            color: var(--primary-color);
+        }
+
+        /* ==========================================================================
+           6. STATISTICS COUNTER
+           ========================================================================== */
+        .statistics {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #001F3F 100%);
+            color: white;
+            padding: 60px 0;
+            position: relative;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            text-align: center;
+        }
+
+        .stat-item i {
+            font-size: 2.5rem;
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            font-family: 'Montserrat', sans-serif;
+            margin-bottom: 5px;
+            color: var(--bg-white);
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.8;
+        }
+
+        /* ==========================================================================
+           7. QUICK LINKS SECTION
+           ========================================================================== */
+        .quick-links {
+            padding: 60px 0;
+            background-color: var(--bg-white);
+        }
+
+        .quick-links-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+        }
+
+        .quick-box {
+            background-color: var(--bg-light);
+            padding: 30px 20px;
+            text-align: center;
+            border-radius: 8px;
+            border: 1px solid #E2E8F0;
+            transition: var(--transition-smooth);
+        }
+
+        .quick-box i {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            transition: var(--transition-smooth);
+        }
+
+        .quick-box h4 {
+            font-size: 1.1rem;
+            color: var(--text-dark);
+        }
+
+        .quick-box:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-5px);
+        }
+
+        .quick-box:hover i, .quick-box:hover h4 {
+            color: var(--bg-white);
+        }
+
+        /* ==========================================================================
+           8. FOOTER SECTION
+           ========================================================================== */
+        footer {
+            background-color: #1E293B;
+            color: #94A3B8;
+            padding: 60px 0 0 0;
+            font-size: 0.9rem;
+            border-top: 4px solid var(--secondary-color);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h3 {
+            color: var(--bg-white);
+            font-size: 1.2rem;
+            margin-bottom: 25px;
+            position: relative;
+            text-transform: uppercase;
+        }
+
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background-color: var(--secondary-color);
+        }
+
+        .footer-col.about p {
+            margin-bottom: 15px;
+            color: #CBD5E1;
+        }
+
+        .footer-col.about span {
+            font-weight: bold;
+            color: var(--secondary-color);
+        }
+
+        .contact-list li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .contact-list i {
+            color: var(--secondary-color);
+            margin-top: 4px;
+        }
+
+        .map-container {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            height: 200px;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        .copyright {
+            background-color: #0F172A;
+            padding: 20px 0;
+            text-align: center;
+            font-size: 0.85rem;
+            color: #64748B;
+            border-top: 1px solid #334155;
+        }
+
+        /* ==========================================================================
+           9. RESPONSIVE DESIGN MEDIA QUERIES
+           ========================================================================== */
+        @media (max-width: 1024px) {
+            .news-grid-layout {
+                grid-template-columns: 1fr;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .top-bar { display: none; } /* Ẩn topbar trên mobile để tối ưu diện tích */
+            
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-menu {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--bg-white);
+                box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.5s ease-out;
+            }
+
+            /* Toggle kích hoạt bằng JS */
+            .nav-menu.active {
+                max-height: 500px;
+                overflow-y: auto;
+            }
+
+            .nav-menu > ul {
+                flex-direction: column;
+            }
+
+            .nav-link {
+                padding: 15px 20px;
+                border-bottom: 1px solid #F1F5F9;
+            }
+
+            .dropdown {
+                position: static;
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+                box-shadow: none;
+                background-color: #F8FAFC;
+                border-top: none;
+                max-height: 0;
+                overflow: hidden;
+            }
+
+            .nav-item:hover .dropdown {
+                max-height: 300px;
+            }
+
+            .hero-slider { height: 400px; }
+            .slide-content h2 { font-size: 1.8rem; }
+            
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
 
     <div class="top-bar">
-        <div class="top-container">
-            <div><i class="fa-solid fa-phone"></i> Hotline tuyển sinh: 028.xxxx.xxxx</div>
-            <div class="top-links">
-                <a href="#"><i class="fa-solid fa-envelope"></i> Cổng thông tin học sinh</a>
-                <a href="#"><i class="fa-solid fa-graduation-cap"></i> Đăng ký xét tuyển trực tuyến</a>
+        <div class="container">
+            <div class="top-info">
+                <span><i class="fa-solid fa-phone"></i> Hotline: 0277.xxx.xxxx</span>
+                <span><i class="fa-solid fa-envelope"></i> thpt.thonglinh.dongthap@edu.vn</span>
+            </div>
+            <div class="top-actions">
+                <div class="social-links">
+                    <a href="#" title="Facebook Trường"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="#" title="Youtube Channel"><i class="fa-brands fa-youtube"></i></a>
+                </div>
+                <div class="search-box">
+                    <input type="text" placeholder="Tìm kiếm...">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </div>
+                <div class="lang-switch" title="Chuyển đổi ngôn ngữ">VI</div>
             </div>
         </div>
     </div>
 
-    <header>
+    <header class="main-header" id="mainHeader">
         <div class="header-container">
-            <a href="#" class="logo">Sea<span>Study</span></a>
-            <div style="background: #f1f5f9; padding: 8px 15px; border-radius: 30px; display: flex; align-items: center;">
-                <input type="text" placeholder="Tìm kiếm thông tin..." style="border: none; background: none; outline: none; font-size: 14px; width: 180px;">
-                <i class="fa-solid fa-magnifying-glass" style="color: var(--blue-navy); cursor: pointer;"></i>
+            <div class="logo-area">
+                <div class="logo-placeholder">TL</div>
+                <div class="school-name">
+                    <h1>TRƯỜNG THPT THỐNG LINH</h1>
+                    <span>Cổng thông tin điện tử chính thức</span>
+                </div>
             </div>
+            
+            <div class="menu-toggle" id="menuToggle">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+
+            <nav class="nav-menu" id="navMenu">
+                <ul>
+                    <li class="nav-item"><a href="#" class="nav-link">Trang chủ</a></li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">Giới thiệu <i class="fa-solid fa-angle-down" style="font-size:0.7rem;"></i></a>
+                        <ul class="dropdown">
+                            <li><a href="#">Lịch sử hình thành</a></li>
+                            <li><a href="#">Ban giám hiệu</a></li>
+                            <li><a href="#">Cơ cấu tổ chức</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">Tuyển sinh <i class="fa-solid fa-angle-down" style="font-size:0.7rem;"></i></a>
+                        <ul class="dropdown">
+                            <li><a href="#">Thông tin tuyển sinh</a></li>
+                            <li><a href="#">Học phí & Học bổng</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">Đào tạo <i class="fa-solid fa-angle-down" style="font-size:0.7rem;"></i></a>
+                        <ul class="dropdown">
+                            <li><a href="#">Các khối lớp học</a></li>
+                            <li><a href="#">Chương trình đào tạo</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">Hoạt động <i class="fa-solid fa-angle-down" style="font-size:0.7rem;"></i></a>
+                        <ul class="dropdown">
+                            <li><a href="#">Tin tức & Sự kiện</a></li>
+                            <li><a href="#">Đoàn Thanh Niên</a></li>
+                            <li><a href="#">Các Câu Lạc Bộ</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a href="#" class="nav-link">Liên hệ</a></li>
+                </ul>
+            </nav>
         </div>
     </header>
 
-    <nav class="main-nav" aria-label="Menu chính">
-        <div class="nav-container">
-            <ul class="menu-links">
-                <li class="menu-item active"><a href="#">Trang chủ</a></li>
-                <li class="menu-item">
-                    <a href="#">Giới thiệu <i class="fa-solid fa-angle-down" style="font-size: 12px; margin-left: 3px;"></i></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Tổng quan về SeaStudy</a></li>
-                        <li><a href="#">Sứ mạng & Tầm nhìn</a></li>
-                        <li><a href="#">Cơ cấu tổ chức</a></li>
-                    </ul>
-                </li>
-                <li class="menu-item">
-                    <a href="#">Tuyển sinh <i class="fa-solid fa-angle-down" style="font-size: 12px; margin-left: 3px;"></i></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Tuyển sinh Hệ Đại học</a></li>
-                        <li><a href="#">Tuyển sinh Hệ Cao đẳng</a></li>
-                        <li><a href="#">Đăng ký Xét học bạ trực tuyến</a></li>
-                        <li><a href="#">Quy chế & Đề án tuyển sinh</a></li>
-                    </ul>
-                </li>
-                <li class="menu-item">
-                    <a href="#">Chương trình đào tạo <i class="fa-solid fa-angle-down" style="font-size: 12px; margin-left: 3px;"></i></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Khối ngành Công nghệ</a></li>
-                        <li><a href="#">Khối ngành Sư phạm</a></li>
-                        <li><a href="#">Khối ngành Kinh tế</a></li>
-                    </ul>
-                </li>
-                <li class="menu-item"><a href="#">Điểm chuẩn</a></li>
-                <li class="menu-item"><a href="#">Tin tức - Sự kiện</a></li>
-            </ul>
-        </div>
-    </nav>
-
-    <section class="slider-section" aria-label="Điểm tin nổi bật">
-        <div class="slide active-slide" style="background-image: url('https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1200&q=80');">
-            <div class="slide-content">
-                <h2>Cổng Thông Tin Tra Cứu Tuyển Sinh Toàn Diện</h2>
-                <p>Cập nhật nhanh chóng thông tin điểm chuẩn, mã ngành và phương thức xét tuyển học đường mới nhất.</p>
+    <section class="hero-slider">
+        <div class="slide active">
+            <div class="slide-img-placeholder" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://picsum.photos/1920/1080?random=1');"></div>
+            <div class="slider-overlay"></div>
+            <div class="container">
+                <div class="slide-content">
+                    <h2>Chào mừng đến với THPT Thống Linh</h2>
+                    <p>Nơi ươm mầm tri thức, chắp cánh những ước mơ thế hệ trẻ bay cao và xa hơn trong tương lai toàn cầu hóa.</p>
+                    <a href="#" class="btn-more">Xem chi tiết</a>
+                </div>
             </div>
         </div>
-        <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=1200&q=80');">
-            <div class="slide-content">
-                <h2>Định Hướng Nghề Nghiệp Vững Chắc Cho Tương Lai</h2>
-                <p>Khám phá lộ trình học tập tối ưu cùng kho cẩm nang tư vấn chọn trường chuyên sâu.</p>
+        <div class="slide">
+            <div class="slide-img-placeholder" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://picsum.photos/1920/1080?random=2');"></div>
+            <div class="slider-overlay"></div>
+            <div class="container">
+                <div class="slide-content">
+                    <h2>Khai giảng năm học mới 2026 - 2027</h2>
+                    <p>Thi đua dạy tốt, học tốt. Chào đón các tân học sinh khối 10 bước vào chặng đường mới đầy rực rỡ.</p>
+                    <a href="#" class="btn-more">Lịch Khai Giảng</a>
+                </div>
+            </div>
+        </div>
+
+        <button class="slider-btn prev" id="prevSlide"><i class="fa-solid fa-chevron-left"></i></button>
+        <button class="slider-btn next" id="nextSlide"><i class="fa-solid fa-chevron-right"></i></button>
+    </section>
+
+    <section class="news-events">
+        <div class="container">
+            <h2 class="section-title">Tin tức & Sự kiện</h2>
+            
+            <div class="news-grid-layout">
+                <div class="news-cards">
+                    <article class="card">
+                        <div class="card-img-holder" style="background-image: url('https://picsum.photos/600/400?random=11');">
+                            <span class="card-badge">Hoạt động Đoàn</span>
+                        </div>
+                        <div class="card-body">
+                            <span class="card-date"><i class="fa-regular fa-calendar"></i> 05 Tháng 7, 2026</span>
+                            <h3 class="card-title"><a href="#">Chi đoàn Giáo viên tổ chức chiến dịch tình nguyện hè đầy ý nghĩa</a></h3>
+                            <p class="card-text">Các chiến sĩ tình nguyện đã mang niềm vui đến cho các trẻ em nghèo tại địa phương bằng nhiều phần quà giá trị...</p>
+                        </div>
+                    </article>
+
+                    <article class="card">
+                        <div class="card-img-holder" style="background-image: url('https://picsum.photos/600/400?random=12');">
+                            <span class="card-badge">Học tập</span>
+                        </div>
+                        <div class="card-body">
+                            <span class="card-date"><i class="fa-regular fa-calendar"></i> 28 Tháng 6, 2026</span>
+                            <h3 class="card-title"><a href="#">Tuyên dương học sinh đạt thành tích cao trong Kỳ thi Tốt nghiệp THPT 2026</a></h3>
+                            <p class="card-text">Nhà trường vinh danh những tấm gương hiếu học xuất sắc đạt kết quả cao, khẳng định chất lượng giáo dục toàn diện...</p>
+                        </div>
+                    </article>
+                </div>
+
+                <div class="notice-board">
+                    <h3><i class="fa-solid fa-bullhorn" style="color:var(--secondary-color);"></i> Thông báo mới nhất</h3>
+                    <div class="notice-list">
+                        <div class="notice-item">
+                            <div class="date-icon">
+                                <span>10</span>
+                                <small>Th7</small>
+                            </div>
+                            <div class="notice-content">
+                                <a href="#">Thông báo về việc nhận hồ sơ nhập học lớp 10 năm học 2026 - 2027</a>
+                            </div>
+                        </div>
+
+                        <div class="notice-item">
+                            <div class="date-icon">
+                                <span>08</span>
+                                <small>Th7</small>
+                            </div>
+                            <div class="notice-content">
+                                <a href="#">Lịch tập trung học sinh và chuẩn bị cho năm học mới toàn trường</a>
+                            </div>
+                        </div>
+
+                        <div class="notice-item">
+                            <div class="date-icon">
+                                <span>02</span>
+                                <small>Th7</small>
+                            </div>
+                            <div class="notice-content">
+                                <a href="#">Thông báo đăng ký tham gia Câu lạc bộ Truyền thông và Nghệ thuật</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <div class="main-content">
-        <main>
-            <section class="portal-card">
-                <h2 class="section-title">Thông tin xét tuyển & Điểm chuẩn cập nhật</h2>
-                <p style="font-size: 14px; color: var(--text-light); margin-bottom: 10px;">Dữ liệu điểm trúng tuyển hệ đại học chính quy dựa trên các phương thức xét tuyển phổ biến.</p>
-                
-                <div class="table-responsive">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Mã Trường</th>
-                                <th>Cơ sở đào tạo / Ngành đào tạo</th>
-                                <th>Khối tuyển</th>
-                                <th>Điểm chuẩn</th>
-                                <th>Phương thức</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><strong>DSP</strong></td>
-                                <td><strong>Đại học Sư phạm TP.HCM</strong><br><small style="color: var(--text-light);">Ngành: Sư phạm Toán học</small></td>
-                                <td>A00, A01</td>
-                                <td class="score-highlight">27.25</td>
-                                <td><span class="badge-method">Thi THPT</span></td>
-                            </tr>
-                            <tr>
-                                <td><strong>DQS</strong></td>
-                                <td><strong>Đại học Bách Khoa - ĐHQG TP.HCM</strong><br><small style="color: var(--text-light);">Ngành: Khoa học Máy tính</small></td>
-                                <td>A00, A01</td>
-                                <td class="score-highlight">28.00</td>
-                                <td><span class="badge-method">Thi THPT</span></td>
-                            </tr>
-                        </tbody>
-                    </table>
+    <section class="statistics">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                    <div class="stat-number" data-count="20">0</div>
+                    <div class="stat-label">Năm Thành Lập</div>
                 </div>
-            </section>
-        </main>
-
-        <aside aria-label="Tiện ích tra cứu nhanh">
-            <div class="sidebar-widget">
-                <h3 class="section-title" style="font-size: 16px; margin-bottom: 15px;">Liên kết tra cứu nhanh</h3>
-                <ul class="quick-links-list">
-                    <li><a href="#"><i class="fa-solid fa-chevron-right"></i> Tra cứu điểm chuẩn theo tỉnh thành</a></li>
-                    <li><a href="#"><i class="fa-solid fa-chevron-right"></i> Danh sách các trường xét học bạ</a></li>
-                    <li><a href="#"><i class="fa-solid fa-chevron-right"></i> Cẩm nang chọn tổ hợp môn tối ưu</a></li>
-                    <li><a href="#"><i class="fa-solid fa-chevron-right"></i> Ngân hàng đề thi thử trực tuyến</a></li>
-                </ul>
-            </div>
-        </aside>
-    </div>
-
-    <footer>
-        <div class="footer-grid">
-            <div class="footer-col">
-                <h4 style="color: white; font-size: 18px;">SeaStudy Portal</h4>
-                <p style="margin-top: 15px; font-size: 13px; line-height: 1.8;">Cổng thông tin dữ liệu số chuyên sâu phục vụ tra cứu thông tin tuyển sinh, khảo sát điểm chuẩn và tư vấn định hướng giáo dục thế hệ mới.</p>
-            </div>
-            <div class="footer-col">
-                <h4>Các hệ đào tạo</h4>
-                <ul>
-                    <li><a href="#">Đại học chính quy</a></li>
-                    <li><a href="#">Cao đẳng chính quy</a></li>
-                    <li><a href="#">Đào tạo từ xa</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>Thông tin tuyển sinh</h4>
-                <ul>
-                    <li><a href="#">Phương thức xét tuyển</a></li>
-                    <li><a href="#">Chỉ tiêu tuyển sinh năm nay</a></li>
-                    <li><a href="#">Hướng dẫn nhập học số</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>Hỗ trợ thí sinh</h4>
-                <ul>
-                    <li><a href="#">Hỏi đáp trực tuyến (FAQ)</a></li>
-                    <li><a href="#">Đường dây nóng hỗ trợ</a></li>
-                    <li><a href="#">Phản hồi lỗi dữ liệu</a></li>
-                </ul>
+                <div class="stat-item">
+                    <i class="fa-solid fa-chalkboard-user"></i>
+                    <div class="stat-number" data-count="85">0</div>
+                    <div class="stat-label">Giáo Viên Giỏi</div>
+                </div>
+                <div class="stat-item">
+                    <i class="fa-solid fa-users"></i>
+                    <div class="stat-number" data-count="1200">0</div>
+                    <div class="stat-label">Học Sinh Đang Theo Học</div>
+                </div>
+                <div class="stat-item">
+                    <i class="fa-solid fa-trophy"></i>
+                    <div class="stat-number" data-count="150">0</div>
+                    <div class="stat-label">Giải Thưởng Học Sinh Giỏi</div>
+                </div>
             </div>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 SeaStudy. Thiết kế đồng bộ hóa cấu trúc cơ sở dữ liệu và tối ưu hóa SEO Portal.</p>
+    </section>
+
+    <section class="quick-links">
+        <div class="container">
+            <h2 class="section-title">Tiện ích trực tuyến</h2>
+            <div class="quick-links-grid">
+                <a href="#" class="quick-box">
+                    <i class="fa-solid fa-address-book"></i>
+                    <h4>Sổ Liên Lạc Điện Tử</h4>
+                </a>
+                <a href="#" class="quick-box">
+                    <i class="fa-solid fa-book-open-reader"></i>
+                    <h4>Thư Viện Số</h4>
+                </a>
+                <a href="#" class="quick-box">
+                    <i class="fa-solid fa-chart-simple"></i>
+                    <h4>Tra Cứu Điểm</h4>
+                </a>
+                <a href="#" class="quick-box">
+                    <i class="fa-solid fa-calendar-days"></i>
+                    <h4>Thời Khóa Biểu</h4>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col about">
+                    <h3>THPT Thống Linh</h3>
+                    <p>Trường THPT Thống Linh cam kết xây dựng môi trường giáo dục lành mạnh, kỷ cương và phát triển tư duy sáng tạo toàn diện cho học sinh.</p>
+                    <p>Cơ quan chủ quản: <span>Sở Giáo dục và Đào tạo tỉnh Đồng Tháp</span></p>
+                </div>
+                <div class="footer-col">
+                    <h3>Thông tin liên hệ</h3>
+                    <ul class="contact-list">
+                        <li><i class="fa-solid fa-location-dot"></i> Xã Phong Mỹ, Huyện Cao Lãnh, Tỉnh Đồng Tháp</li>
+                        <li><i class="fa-solid fa-phone"></i> Điện thoại: 0277.xxx.xxxx</li>
+                        <li><i class="fa-solid fa-print"></i> Fax: 0277.xxx.xxxx</li>
+                        <li><i class="fa-solid fa-envelope"></i> Email: thpt.thonglinh.dongthap@edu.vn</li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Vị trí trên bản đồ</h3>
+                    <div class="map-container">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3923.639433604314!2d105.58614917596001!3d10.450304689679124!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x310a62370701bc93%3A0xe6bf446be0d58be1!2zVHLGsOG7nW5nIFRIUFQgVGjhu5FuZyBMaW5o!5e0!3m2!1svi!2s!4v1710000000000!5m2!1vi!2s" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <div class="container">
+                Copyright © 2026 Trường THPT Thống Linh. All Rights Reserved.
+            </div>
         </div>
     </footer>
 
     <script>
-        let currentSlideIndex = 0;
-        const slides = document.querySelectorAll('.slide');
-        const totalSlides = slides.length;
+        document.addEventListener('DOMContentLoaded', () => {
 
-        function showNextSlide() {
-            // Loại bỏ class active ở slide hiện tại
-            slides[currentSlideIndex].classList.remove('active-slide');
-            
-            // Tính toán chỉ số slide tiếp theo (quay vòng về 0 nếu hết slide)
-            currentSlideIndex = (currentSlideIndex + 1) % totalSlides;
-            
-            // Thêm class active để hiển thị slide mới mượt mà
-            slides[currentSlideIndex].classList.add('active-slide');
-        }
+            // --- 8.1. STICKY MENU LOGIC ---
+            const header = document.getElementById('mainHeader');
+            const topBarHeight = 40; // Chiều cao ước lượng của thanh topbar
 
-        // Đặt thời gian tự động đổi slide sau mỗi 4 giây (4000ms)
-        setInterval(showNextSlide, 4000);
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > topBarHeight) {
+                    header.classList.add('sticky');
+                } else {
+                    header.classList.remove('sticky');
+                }
+            });
+
+
+            // --- 8.2. MOBILE MENU TOGGLE LOGIC ---
+            const menuToggle = document.getElementById('menuToggle');
+            const navMenu = document.getElementById('navMenu');
+
+            menuToggle.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+                // Đổi icon từ menu gạch ngang sang icon Đóng (X)
+                const icon = menuToggle.querySelector('i');
+                if(navMenu.classList.contains('active')) {
+                    icon.className = 'fa-solid fa-xmark';
+                } else {
+                    icon.className = 'fa-solid fa-bars';
+                }
+            });
+
+
+            // --- 8.3. AUTO-PLAY HERO SLIDER LOGIC ---
+            const slides = document.querySelectorAll('.slide');
+            const nextBtn = document.getElementById('nextSlide');
+            const prevBtn = document.getElementById('prevSlide');
+            let currentSlide = 0;
+            let slideInterval;
+
+            function showSlide(index) {
+                slides.forEach(slide => slide.classList.remove('active'));
+                
+                currentSlide = index;
+                if(currentSlide >= slides.length) currentSlide = 0;
+                if(currentSlide < 0) currentSlide = slides.length - 1;
+                
+                slides[currentSlide].classList.add('active');
+            }
+
+            function nextSlide() {
+                showSlide(currentSlide + 1);
+            }
+
+            function prevSlide() {
+                showSlide(currentSlide - 1);
+            }
+
+            // Thiết lập sự kiện click cho các nút
+            nextBtn.addEventListener('click', () => {
+                nextSlide();
+                resetInterval();
+            });
+
+            prevBtn.addEventListener('click', () => {
+                prevSlide();
+                resetInterval();
+            });
+
+            // Khởi chạy vòng lặp tự động (5 giây đổi ảnh 1 lần)
+            function startInterval() {
+                slideInterval = setInterval(nextSlide, 5000);
+            }
+
+            function resetInterval() {
+                clearInterval(slideInterval);
+                startInterval();
+            }
+
+            startInterval();
+
+
+            // --- 8.4. COUNT-UP ANIMATION LOGIC ON SCROLL ---
+            const counters = document.querySelectorAll('.stat-number');
+            const speed = 200; // Tốc độ chạy số càng nhỏ chạy càng nhanh
+            let counted = false; // Cờ kiểm tra tránh chạy lặp lại
+
+            const startCountUp = () => {
+                counters.forEach(counter => {
+                    const target = +counter.getAttribute('data-count');
+                    const updateCount = () => {
+                        const count = +counter.innerText;
+                        const inc = Math.ceil(target / speed); // Lượng tăng mỗi frame
+
+                        if (count < target) {
+                            counter.innerText = count + inc > target ? target : count + inc;
+                            setTimeout(updateCount, 15);
+                        } else {
+                            counter.innerText = target;
+                        }
+                    };
+                    updateCount();
+                });
+            };
+
+            // Intersection Observer nhằm kiểm tra xem vùng Counter đã xuất hiện trên màn hình chưa
+            const statsSection = document.querySelector('.statistics');
+            const observerOptions = {
+                root: null,
+                threshold: 0.2 // Kích hoạt khi thấy được 20% giao diện phần này
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if(entry.isIntersecting && !counted) {
+                        startCountUp();
+                        counted = true; // Đánh dấu đã hoàn tất hiệu ứng
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            observer.observe(statsSection);
+        });
     </script>
 </body>
 </html>
