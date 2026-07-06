@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SeaStudy - Trang Thông tin Tuyển sinh & Tra cứu Giáo dục</title>
-    <!-- Font Awesome Icons -->
+    <title>SeaStudy - Chuyên Trang Thông Tin Tuyển Sinh & Tra Cứu Giáo Dục</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         :root {
@@ -30,7 +29,7 @@
             line-height: 1.5;
         }
 
-        /* --- 1. SUB-HEADER TOP (Khám phá thêm) --- */
+        /* --- 1. SUB-HEADER TOP (KHÁM PHÁ THÊM) --- */
         .sub-header {
             max-width: 1240px;
             margin: 0 auto;
@@ -85,6 +84,7 @@
             gap: 4px;
             transition: all 0.2s;
             cursor: pointer;
+            outline: none;
         }
 
         .tag-btn:hover {
@@ -189,6 +189,7 @@
             max-width: 550px;
         }
 
+        /* Thanh tìm kiếm hoạt động */
         .search-wrapper {
             max-width: 550px;
             position: relative;
@@ -228,14 +229,15 @@
             justify-content: center;
             transition: background 0.2s;
         }
+        .btn-submit-search:hover { background-color: var(--blue-dark); }
 
         /* --- 4. TAB SECTIONS MANAGEMENT --- */
         .tab-content {
-            display: none; /* Mặc định ẩn tất cả các trang con */
+            display: none;
         }
 
         .tab-content.active-tab {
-            display: block; /* Chỉ hiện trang nào có class active-tab */
+            display: block;
         }
 
         .content-container {
@@ -304,6 +306,14 @@
             font-weight: 700;
             font-size: 15px;
         }
+        
+        .no-result {
+            display: none;
+            text-align: center;
+            padding: 30px;
+            color: #94a3b8;
+            font-style: italic;
+        }
 
         /* --- SIDEBAR WIDGETS --- */
         .sidebar {
@@ -358,11 +368,7 @@
             padding-bottom: 40px;
             border-bottom: 1px solid #334155;
         }
-        .footer-col h4 {
-            color: white;
-            margin-bottom: 20px;
-            font-size: 16px;
-        }
+        .footer-col h4 { color: white; margin-bottom: 20px; font-size: 16px; }
         .footer-col ul { list-style: none; }
         .footer-col ul li { margin-bottom: 12px; }
         .footer-col ul li a { color: #94a3b8; text-decoration: none; font-size: 14px; }
@@ -384,22 +390,18 @@
 </head>
 <body>
 
-    <!-- 1. Sub-Header Top -->
     <div class="sub-header">
         <a href="#" class="brand-logo-text" onclick="switchTab('trang-chu')">Sea<span>Study</span></a>
         <div class="explore-section">
             <span class="explore-title">Khám phá thêm</span>
             <div class="explore-tags">
-                <button class="tag-btn" onclick="switchTab('blog')"><i class="fa-solid fa-user-tie"></i> Hướng nghiệp sinh viên</button>
-                <button class="tag-btn" onclick="switchTab('blog')"><i class="fa-regular fa-comments"></i> Blog giáo dục</button>
-                <button class="tag-btn" onclick="switchTab('dai-hoc')"><i class="fa-solid fa-building-columns"></i> Trường đại học</button>
                 <button class="tag-btn" onclick="switchTab('diem-chuan')"><i class="fa-solid fa-list-check"></i> Tra cứu điểm</button>
                 <button class="tag-btn" onclick="switchTab('nganh-nghe')"><i class="fa-solid fa-briefcase"></i> Ngành học</button>
+                <button class="tag-btn" onclick="switchTab('dai-hoc')"><i class="fa-solid fa-building-columns"></i> Trường đại học</button>
             </div>
         </div>
     </div>
 
-    <!-- 2. Main Navigation (Thanh menu điều hướng chính) -->
     <nav class="main-nav">
         <div class="nav-container">
             <ul class="menu-links">
@@ -415,183 +417,162 @@
         </div>
     </nav>
 
-    <!-- 3. Hero Banner chung -->
     <section class="hero-banner">
         <div class="hero-container">
             <div class="hero-text">
                 <h1>Tra cứu thông tin tuyển sinh<br><span>nhanh chóng</span>, chính xác</h1>
-                <p>Tổng hợp trường đại học, ngành học, tổ hợp môn và điểm chuẩn trong một trải nghiệm gọn gàng, dễ hiểu.</p>
+                <p>Nhập tên trường, mã trường hoặc ngành học bên dưới để tra cứu tức thì.</p>
                 <div class="search-wrapper">
                     <i class="fa-solid fa-magnifying-glass fa-magnifying-glass-inside"></i>
-                    <input type="text" placeholder="Tìm kiếm thông tin bạn cần...">
-                    <button class="btn-submit-search"><i class="fa-solid fa-magnifying-glass"></i></button>
+                    <input type="text" id="mainSearchInput" placeholder="Nhập tên trường, ngành học (Ví dụ: Sư phạm, Bách Khoa...)" onkeyup="liveSearch()">
+                    <button class="btn-submit-search" onclick="liveSearch()"><i class="fa-solid fa-magnifying-glass"></i></button>
                 </div>
             </div>
         </div>
     </section>
 
-
-    <!-- ==================== HỆ THỐNG CÁC MỤC NỘI DUNG (TAB) ==================== -->
-
-    <!-- TAB 1: TRANG CHỦ -->
-    <div id="tab-trang-chu" class="tab-content active-tab">
-        <div class="content-container">
-            <main>
-                <div class="main-card">
-                    <h2 class="section-headline">Chào mừng bạn đến với SeaStudy</h2>
-                    <p style="margin-bottom: 15px;">Hệ thống cung cấp đầy đủ các công cụ tra cứu điểm thi, điểm chuẩn, và cẩm nang chọn ngành chọn nghề chính xác nhất.</p>
-                    <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=800&q=80" style="width: 100%; border-radius: 8px;" alt="">
+    <div class="content-container">
+        <main>
+            <div class="main-card">
+                <h2 class="section-headline" id="table-title">Kho dữ liệu tra cứu tuyển sinh tổng hợp</h2>
+                
+                <div class="table-responsive">
+                    <table id="searchTable">
+                        <thead>
+                            <tr>
+                                <th>Mã Trường</th>
+                                <th>Tên Trường / Ngành Học</th>
+                                <th>Khối Thi</th>
+                                <th>Điểm Chuẩn</th>
+                                <th>Hình thức</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="searchable-row" data-tab="dai-hoc">
+                                <td><strong>DSP</strong></td>
+                                <td class="school-name">Đại học Sư phạm TP.HCM<br><small style="color: #64748b;">Ngành: Sư phạm Toán học</small></td>
+                                <td><span class="badge">A00</span><span class="badge">A01</span></td>
+                                <td class="diem">27.25</td>
+                                <td>Điểm thi THPT</td>
+                            </tr>
+                            <tr class="searchable-row" data-tab="dai-hoc">
+                                <td><strong>DQS</strong></td>
+                                <td class="school-name">Đại học Bách Khoa - ĐHQG TP.HCM<br><small style="color: #64748b;">Ngành: Khoa học Máy tính</small></td>
+                                <td><span class="badge">A00</span><span class="badge">A01</span></td>
+                                <td class="diem">28.00</td>
+                                <td>Điểm thi THPT</td>
+                            </tr>
+                            <tr class="searchable-row" data-tab="dai-hoc">
+                                <td><strong>BKA</strong></td>
+                                <td class="school-name">Đại học Bách Khoa Hà Nội<br><small style="color: #64748b;">Ngành: Kỹ thuật Phần mềm</small></td>
+                                <td><span class="badge">A00</span><span class="badge">A01</span></td>
+                                <td class="diem">28.50</td>
+                                <td>Điểm thi THPT</td>
+                            </tr>
+                            <tr class="searchable-row" data-tab="cao-dang">
+                                <td><strong>CMS</strong></td>
+                                <td class="school-name">Trường Cao đẳng Sư phạm Trung ương<br><small style="color: #64748b;">Ngành: Giáo dục Mầm non</small></td>
+                                <td><span class="badge">M00</span></td>
+                                <td class="diem">19.00</td>
+                                <td>Xét học bạ</td>
+                            </tr>
+                            <tr class="searchable-row" data-tab="cao-dang">
+                                <td><strong>CKG</strong></td>
+                                <td class="school-name">Trường Cao đẳng Kiên Giang<br><small style="color: #64748b;">Ngành: Quản trị Dịch vụ Du lịch</small></td>
+                                <td><span class="badge">A01</span><span class="badge">D01</span></td>
+                                <td class="diem">15.00</td>
+                                <td>Xét học bạ</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <div id="noResult" class="no-result">Không tìm thấy dữ liệu phù hợp với từ khóa của bạn...</div>
                 </div>
-            </main>
-            <aside class="sidebar">
-                <div class="widget">
-                    <h3 class="section-headline" style="font-size: 16px;">Tin mới nhận</h3>
-                    <div class="news-item">
-                        <div class="news-info"><a href="#">Phương án tuyển sinh mới nhất năm học này.</a></div>
-                    </div>
-                </div>
-            </aside>
-        </div>
-    </div>
-
-    <!-- TAB 2: ĐẠI HỌC -->
-    <div id="tab-dai-hoc" class="tab-content">
-        <div class="content-container">
-            <main>
-                <div class="main-card">
-                    <h2 class="section-headline">Danh sách các Trường Đại học & Học viện</h2>
-                    <div class="table-responsive">
-                        <table>
-                            <thead>
-                                <tr><th>Mã Trường</th><th>Tên Trường</th><th>Khu vực</th><th>Loại hình</th></tr>
-                            </thead>
-                            <tbody>
-                                <tr><td><strong>BKA</strong></td><td>Đại học Bách Khoa Hà Nội</td><td>Miền Bắc</td><td>Công lập</td></tr>
-                                <tr><td><strong>DQS</strong></td><td>Đại học Bách Khoa - ĐHQG TP.HCM</td><td>Miền Nam</td><td>Công lập</td></tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </main>
-        </div>
-    </div>
-
-    <!-- TAB 3: CAO ĐẲNG -->
-    <div id="tab-cao-dang" class="tab-content">
-        <div class="content-container">
-            <main>
-                <div class="main-card">
-                    <h2 class="section-headline">Hệ thống các Trường Cao đẳng tiêu biểu</h2>
-                    <p>Thông tin xét tuyển học bạ và chỉ tiêu tuyển sinh hệ Cao đẳng chính quy toàn quốc.</p>
-                </div>
-            </main>
-        </div>
-    </div>
-
-    <!-- TAB 4: THXT (THÔNG TIN XÉT TUYỂN) -->
-    <div id="tab-thxt" class="tab-content">
-        <div class="content-container">
-            <main>
-                <div class="main-card">
-                    <h2 class="section-headline">Phương thức Thông tin xét tuyển (THXT)</h2>
-                    <p>Cập nhật quy chế xét tuyển thẳng, ưu tiên xét tuyển bằng chứng chỉ quốc tế (IELTS, SAT) và đánh giá năng lực.</p>
-                </div>
-            </main>
-        </div>
-    </div>
-
-    <!-- TAB 5: NGÀNH NGHỀ -->
-    <div id="tab-nganh-nghe" class="tab-content">
-        <div class="content-container">
-            <main>
-                <div class="main-card">
-                    <h2 class="section-headline">Danh mục Ngành nghề Đào tạo</h2>
-                    <ul>
-                        <li style="margin: 10px 20px;"><strong>Công nghệ thông tin:</strong> Kỹ thuật phần mềm, Trí tuệ nhân tạo, An toàn thông tin.</li>
-                        <li style="margin: 10px 20px;"><strong>Khối kinh tế:</strong> Quản trị kinh doanh, Logistics, Tài chính ngân hàng.</li>
-                    </ul>
-                </div>
-            </main>
-        </div>
-    </div>
-
-    <!-- TAB 6: ĐIỂM CHUẨN -->
-    <div id="tab-diem-chuan" class="tab-content">
-        <div class="content-container">
-            <main>
-                <div class="main-card">
-                    <h2 class="section-headline">Tra cứu Điểm chuẩn Đại học các năm</h2>
-                    <div class="table-responsive">
-                        <table>
-                            <thead>
-                                <tr><th>Ngành Học</th><th>Khối</th><th>Điểm Chuẩn</th></tr>
-                            </thead>
-                            <tbody>
-                                <tr><td>Khoa học Máy tính</td><td><span class="badge">A00</span></td><td class="diem">28.00</td></tr>
-                                <tr><td>Sư phạm Toán</td><td><span class="badge">A01</span></td><td class="diem">27.25</td></tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </main>
-        </div>
-    </div>
-
-    <!-- TAB 7: BLOG -->
-    <div id="tab-blog" class="tab-content">
-        <div class="content-container">
-            <main>
-                <div class="main-card">
-                    <h2 class="section-headline">Blog Giáo dục & Hướng nghiệp</h2>
-                    <p>Chia sẻ kinh nghiệm ôn thi, mẹo giảm áp lực phòng thi và cẩm nang định hướng tương lai.</p>
-                </div>
-            </main>
-        </div>
-    </div>
-
-
-    <!-- 5. Footer System -->
-    <footer>
-        <div class="footer-grid">
-            <div class="footer-col">
-                <h4 style="font-size: 20px; color: white;">SeaStudy</h4>
-                <p style="font-size: 14px; margin-top: 10px;">Chuyên trang hỗ trợ tra cứu thông tin tuyển sinh uy tín.</p>
             </div>
-        </div>
+        </main>
+
+        <aside class="sidebar">
+            <div class="widget">
+                <h3 class="section-headline" style="font-size: 16px;">Tin nổi bật</h3>
+                <div class="news-item">
+                    <div class="news-info"><a href="#">SeaStudy cập nhật tính năng bộ lọc dữ liệu tự động toàn hệ thống.</a></div>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <footer>
         <div class="footer-bottom">
-            <p>&copy; 2026 SeaStudy. Toàn bộ các mục đã được liên kết hoạt động tốt.</p>
+            <p>&copy; 2026 SeaStudy. Hệ thống tìm kiếm tự động thời gian thực đã hoạt động.</p>
         </div>
     </footer>
 
-    <!-- CODE JAVASCRIPT ĐIỀU HƯỚNG CHUYỂN ĐỔI TAB MƯỢT MÀ -->
     <script>
+        // 1. Hàm tìm kiếm thời gian thực (Live Search)
+        function liveSearch() {
+            let input = document.getElementById("mainSearchInput");
+            let filter = input.value.toUpperCase();
+            let table = document.getElementById("searchTable");
+            let tr = table.getElementsByClassName("searchable-row");
+            let noResult = document.getElementById("noResult");
+            let hasData = false;
+
+            for (let i = 0; i < tr.length; i++) {
+                // Lấy dữ liệu ở cột Mã Trường và cột Tên Trường
+                let codeCell = tr[i].getElementsByTagName("td")[0];
+                let nameCell = tr[i].getElementsByTagName("td")[1];
+                
+                if (codeCell || nameCell) {
+                    let codeText = codeCell.textContent || codeCell.innerText;
+                    let nameText = nameCell.textContent || nameCell.innerText;
+                    
+                    // Nếu khớp từ khóa
+                    if (codeText.toUpperCase().indexOf(filter) > -1 || nameText.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                        hasData = true;
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+
+            // Hiển thị thông báo nếu không có dòng nào khớp
+            if (hasData) {
+                noResult.style.display = "none";
+            } else {
+                noResult.style.display = "block";
+            }
+        }
+
+        // 2. Hàm lọc nội dung dựa trên Menu Tab được click
         function switchTab(tabName) {
-            // 1. Ẩn toàn bộ các mục nội dung (Xóa class active-tab)
-            let contents = document.querySelectorAll('.tab-content');
-            contents.forEach(content => {
-                content.classList.remove('active-tab');
-            });
-
-            // 2. Bỏ trạng thái sáng màu (active) của các nút cũ trên menu chính
+            // Thay đổi trạng thái nút active trên menu
             let navButtons = document.querySelectorAll('.nav-item');
-            navButtons.forEach(button => {
-                button.classList.remove('active');
-            });
+            navButtons.forEach(button => button.classList.remove('active'));
+            
+            let currentBtn = document.getElementById('btn-' + tabName);
+            if (currentBtn) currentBtn.classList.add('active');
 
-            // 3. Hiển thị đúng vùng nội dung của mục vừa được bấm chọn
-            let targetTab = document.getElementById('tab-' + tabName);
-            if(targetTab) {
-                targetTab.classList.add('active-tab');
+            // Lọc các hàng trong bảng dựa theo thuộc tính data-tab
+            let tr = document.getElementsByClassName("searchable-row");
+            let tableTitle = document.getElementById("table-title");
+
+            if (tabName === 'trang-chu' || tabName === 'diem-chuan') {
+                tableTitle.innerText = "Kho dữ liệu tra cứu tuyển sinh tổng hợp";
+                for (let i = 0; i < tr.length; i++) tr[i].style.display = "";
+            } else {
+                if(tabName === 'dai-hoc') tableTitle.innerText = "Danh sách dữ liệu các trường Hệ Đại học";
+                if(tabName === 'cao-dang') tableTitle.innerText = "Danh sách dữ liệu các trường Hệ Cao đẳng";
+                
+                for (let i = 0; i < tr.length; i++) {
+                    let rowTab = tr[i].getAttribute("data-tab");
+                    if (rowTab === tabName) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
             }
-
-            // 4. Làm sáng nút vừa bấm trên thanh Menu tương ứng
-            let targetButton = document.getElementById('btn-' + tabName);
-            if(targetButton) {
-                targetButton.classList.add('active');
-            }
-
-            // 5. Tự động cuộn trang lên đầu mỗi khi chuyển mục để dễ nhìn
-            window.scrollTo({top: 0, behavior: 'smooth'});
         }
     </script>
 </body>
